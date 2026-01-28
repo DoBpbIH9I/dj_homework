@@ -14,15 +14,15 @@ def show_catalog(request):
 
     if sort_pages == 'max_price':
         phones = all_phones.order_by('-price')
-        context = {'phone': phones}
+        context = {'phones': phones}
 
     elif sort_pages == 'min_price':
         phones = all_phones.order_by('price')
-        context = {'phone': phones}
+        context = {'phones': phones}
 
     elif sort_pages == 'name':
         phones = all_phones.order_by('name')
-        context = {'phone': phones}
+        context = {'phones': phones}
 
     return render(request, template, context)
 
