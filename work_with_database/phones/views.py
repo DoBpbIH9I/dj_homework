@@ -10,29 +10,26 @@ def show_catalog(request):
     template = 'catalog.html'
     sort_pages = request.GET.get('sort', '')
     all_phones = Phone.objects.all()
+    context = {'phones': all_phones}
 
     if sort_pages == 'max_price':
         phones = all_phones.order_by('-price')
-        context = {'phones': phones}
-        return render(request, template, context)
+        context = {'phone': phones}
 
     elif sort_pages == 'min_price':
         phones = all_phones.order_by('price')
-        context = {'phones': phones}
-        return render(request, template, context)
+        context = {'phone': phones}
 
     elif sort_pages == 'name':
         phones = all_phones.order_by('name')
-        context = {'phones': phones}
-        return render(request, template, context)
+        context = {'phone': phones}
 
-    context = {'phones': all_phones}
     return render(request, template, context)
 
 
 def show_product(request, slug):
 
     template = 'product.html'
-    phones = Phone.objects.get(slug=slug)
-    context = {'phones': phones}
+    phone = Phone.objects.get(slug=slug)
+    context = {'phones': phone}
     return render(request, template, context)
